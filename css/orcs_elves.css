@@ -1,0 +1,166 @@
+body {
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+}
+
+.battle-field {
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  border: 3px solid tomato;
+  border-radius: 2px;
+  max-width: 1000px;
+  min-height: 400px;
+}
+
+.start-area {
+  padding: 30px;
+  text-align: center;
+}
+
+.winner-area {
+  margin: 20px;
+}
+
+.info-area {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.left-warrior__img {
+  margin-right: 4px;
+}
+
+.left-warrior__img,
+.right-warrior__img {
+  margin-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: left;
+}
+
+.left-warrior__current-data {
+  text-align: left;
+}
+
+.right-warrior__current-data {
+  text-align: left;
+}
+
+.shoot-btn {
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  width: 100px;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.start-battle-btn {
+  border-radius: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.shoot-arrow {
+  z-index: 1;
+  position: absolute;
+  display: block;
+  content: "";
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100px;
+
+  background-color: darkslateblue;
+}
+
+.left-warrior__death-count,
+.right-warrior__death-count {
+  color: red;
+  font-weight: 700;
+}
+
+.left-warrior__level-count,
+.right-warrior__level-count {
+  color: green;
+  font-weight: 700;
+}
+
+.left-warrior__current-hp-label::before {
+  position: absolute;
+  left: -25px;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url(../images/life.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.left-warrior__current-mp-label::before {
+  position: absolute;
+  left: -25px;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url(../images/mana.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.right-warrior__current-hp-label::before {
+  position: absolute;
+  left: -25px;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url(../images/life.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.right-warrior__current-mp-label::before {
+  position: absolute;
+  left: -25px;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url(../images/mana.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.left-warrior__hp-wrapper,
+.left-warrior__mp-wrapper,
+.right-warrior__hp-wrapper,
+.right-warrior__mp-wrapper {
+  position: relative;
+}
+
+ul {
+  line-height: 1.4;
+}
+
+.left-warrior__lifeLine,
+.right-warrior__lifeLine {
+  margin-bottom: 2px;
+  height: 4px;
+  background: linear-gradient(to right, rgba(204,40,40,1) 0%,rgba(204,40,40,1) 100%,rgba(255,252,252,1) 100%,rgba(255,255,255,1) 100%);
+}
+
+.left-warrior__manaLine,
+.right-warrior__manaLine {
+  height: 4px;
+  background: linear-gradient(to right, rgba(25,30,170,1) 0%,rgba(25,30,170,1) 100%,rgba(255,252,252,1) 100%,rgba(255,255,255,1) 100%);
+  margin-bottom: 10px;
+}

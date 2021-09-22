@@ -32,7 +32,7 @@ const firstMenuItem = document.querySelector(".menu-item");
 firstMenuItem.style.color = 'tomato';
 console.log(firstMenuItem); */
 
-const txt = '3'
+/* const txt = '3'
 let text = '';
 for (let i = 1; i <= 4; i++) {
     text = document.querySelector(`.change${i}`);
@@ -40,3 +40,41 @@ for (let i = 1; i <= 4; i++) {
     alert();
     text.textContent = 'rome!';
 }
+ */
+
+//---------------------------------------------
+/* const someFunction1 = ((x) => {
+    return 5 > x > 1;
+});
+const someFunction2 = ((x) => {
+    return 5 > x && x > 1;
+});
+
+console.log('5 > 2 > 1 = ',someFunction1(2));
+console.log('5 > 2 > 1 = ',someFunction2(2)); */
+//---------------------------------------------
+
+
+const someFunction = function(ind, marker) {
+    console.log(marker,'this: =', this);
+    console.log(marker,'index =', ind);
+
+}
+
+console.log(someFunction, someFunction(1,"*"));
+
+const function2 = function(index, callback){
+callback(index, "#");
+}
+ 
+function2(5,someFunction);
+
+console.log('=====================================');
+
+
+const hat = {
+    color:'red',
+    function2,
+};
+
+console.log(hat);

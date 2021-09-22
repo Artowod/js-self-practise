@@ -1,52 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initia-scale=1.0" />
-    <title>practise</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <!--     <div class="pic">
-      <img
-        class="our_team__pic"
-        srcset="
-          ./images/team-member-1-450.jpg 450w,
-          ./images/team-member-1-354.jpg 354w,
-          ./images/team-member-1-270.jpg 270w
-        "
-        src="./images/team-member-1-450.jpg"
-        sizes=" (min-width:1200px) 270px, (min-width: 768px) 354px, (min-width: 480px) 450px, 100vw"
-        alt="Hi"
-      />
-    </div>
-    <section class="flex-margin">
-      <div class="element"></div>
-      <div class="element"></div>
-      <div class="element"></div>
-    </section>
-    <section class="flex-margin-tablet">
-      <div class="element"></div>
-      <div class="element"></div>
-      <div class="element"></div>
-    </section>
-    <section class="flex-margin-pc">
-      <div class="element"></div>
-      <div class="element"></div>
-      <div class="element"></div>
-    </section>
-     -->
-    <ul id="menu" class="menu">
-      <li class="menu-item change1">change</li>
-      <li class="menu-item change2">about</li>
-      <li class="menu-item change3">gallery</li>
-      <li class="menu-item change4">blog</li>
-    </ul>
 
-    <!-- <script src="js/script.js"></script> -->
-    <!-- <script src="js/shop.js"></script> -->
-    <script src="js/dom.js"></script>
-    <!-- <script src="js/autocheck.js"></script> -->
-    <!-- <script src="js/n_array.js"></script> -->
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initia-scale=1.0" />
+  <title>practise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css" />
+  <link rel="stylesheet" href="./css/orcs_elves.css" />
+</head>
+
+<body>
+  <hero class="hero">
+    <h1>Orcs VS Elves! .... and Humans...</h1>
+  </hero>
+
+  <div class="battle-field">
+    <div class="warrior-area left-warrior">
+      <h2 class="warrior-area__left-warrior-name">Left Warrior:</h2>
+      <div class="info-area left-warrior__info">
+        <ul class="left-warrior__initial-data">
+          <li>
+            <label class="left-warrior__initial-hp-label" for="left-warrior__initial-hp-text">Initial HP</label>
+            <input class="left-warrior__initial-hp-text" type="text" id="left-warrior__initial-hp-text" />
+          </li>
+          <li>
+            <label class="left-warrior__initial-mp-label" for="left-warrior__initial-mp-text">Initial MP</label>
+            <input class="left-warrior__initial-mp-text" type="text" id="left-warrior__initial-mp-text" />
+          </li>
+        </ul>
+
+        <ul class="left-warrior__current-data">
+          <li class="left-warrior__hp-wrapper">
+            <label class="left-warrior__current-hp-label"></label>
+            <label class="left-warrior__current-hp-text"> 0 </label>
+          </li>
+          <li class="left-warrior__mp-wrapper">
+            <label class="left-warrior__current-mp-label"></label>
+            <label class="left-warrior__current-mp-text"> 0 </label>
+          </li>
+          <li class="left-warrior__level-count">
+            <label class="left-warrior__current-level-label">Level:</label>
+            <label class="left-warrior__current-level-text"> 1 </label>
+          </li>
+          <li>
+            <label class="left-warrior__current-exp-label">Experience:</label>
+            <label class="left-warrior__current-exp-text"> 0 </label>
+          </li>
+          <li class="left-warrior__death-count">
+            <label class="left-warrior__death-count-label">Death:</label>
+            <label class="left-warrior__death-count-text"> 0 </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="left-warrior__img">
+      <div class="left-warrior__lifeLine"></div>
+      <div class="left-warrior__manaLine"></div>
+      <img class="left-warrior__img-link" src="./images/warrior-template.jpg" width=150px />
+      <!-- width="100" height="150" -->
+      <img class="shoot-arrow" src="./images/shoot-arrow.jpg" width=50px />
+      <button class="shoot-btn" id = "autoBattleBTN" type="button">Shoot!</button>
+
+      <label class="left-warrior__dmg hidden"></label><!-- movable -->
+    </div>
+    <div class="right-warrior__img">
+      <div class="right-warrior__lifeLine"></div>
+      <div class="right-warrior__manaLine"></div>
+
+      <img class="right-warrior__img-link" src="./images/warrior-template.jpg" width=150px />
+
+      <label class="right-warrior__dmg hidden"></label><!-- movable -->
+    </div>
+
+    <div class="warrior-area right-warrior">
+      <h2 class="warrior-area__right-warrior-name">Right Warrior:</h2>
+      <div class="info-area right-warrior__info">
+        <ul class="right-warrior__initial-data">
+          <li>
+            <label class="right-warrior__initial-hp-label" for="right-warrior__initial-hp-text">Initial HP</label>
+            <input class="right-warrior__initial-hp-text" type="text" id="right-warrior__initial-hp-text" />
+          </li>
+          <li>
+            <label class="right-warrior__initial-mp-label" for="right-warrior__initial-mp-text">Initial MP
+            </label>
+            <input class="right-warrior__initial-mp-text" type="text" id="right-warrior__initial-mp-text" />
+          </li>
+        </ul>
+
+        <ul class="right-warrior__current-data">
+          <li class="right-warrior__hp-wrapper">
+            <label class="right-warrior__current-hp-label"></label>
+            <label class="right-warrior__current-hp-text"> 0 </label>
+          </li>
+          <li class="right-warrior__mp-wrapper">
+            <label class="right-warrior__current-mp-label"></label>
+            <label class="right-warrior__current-mp-text"> 0 </label>
+          </li>
+          <li class="right-warrior__level-count">
+            <label class="right-warrior__current-level-label">Level:</label>
+            <label class="right-warrior__current-level-text"> 1 </label>
+          </li>
+          <li>
+            <label class="right-warrior__current-exp-label">Experience:</label>
+            <label class="right-warrior__current-exp-text"> 0 </label>
+          </li>
+          <li class="right-warrior__death-count">
+            <label class="right-warrior__death-count-label">Death:</label>
+            <label class="right-warrior__death-count-text"> 0 </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="start-area">
+    <button class="start-battle-btn" type="button">fight!</button>
+
+    <div class="winner-area hidden">Round: 0</div>
+  </div>
+  <footer>
+    <section class="tips">
+      <div class="tips__container">
+        <h2> Мануальчик </h2>
+        <ul>
+          <li> Сперва задать начальные значения жизни и манны обоим воинам</li>
+          <li> Затем жмём кнопку FIGHT! для выбора Персонажей (Можно жать несколько раз)</li>
+          <li> удары наносятся по очереди каждым из персов По нажатии кнопки SHOOT!</li>
+          <li> стрелка показывает направление атаки</li>
+          <li> - </li>
+        </ul>
+
+      </div>
+
+
+    </section>
+
+  </footer>
+  <!-- <script src="js/script.js"></script> -->
+  <!-- <script src="js/shop.js"></script> -->
+  <!-- <script src="js/dom.js"></script> -->
+  <script src="js/orcs_elves.js"></script>
+  <!-- <script src="js/autocheck.js"></script> -->
+  <!-- <script src="js/n_array.js"></script> -->
+</body>
+
 </html>

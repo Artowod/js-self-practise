@@ -1,16 +1,6 @@
  'use strict'; 
 
 
-const arr = [[100, 200, 10], [1, 2, 3], [10, 20, 30]];
-
-/* const a = arr.forEach(item => item[0]); */
-
-console.log(arr.map(item => item).reduce((acc, [r, g, b]) => {
-  
-
-  return acc;
-},0));
-
 //=======================18 block5 =========================
  /*  class User {
  //email;  // ??????????????? - НУЖНА - ИНАЧЕ ОШИБКА
@@ -26,7 +16,7 @@ console.log(arr.map(item => item).reduce((acc, [r, g, b]) => {
   set email1(newEmail) {
     this.email = newEmail;
   }
-}
+} 
 
 
 const user1 = new User('jkjkj@jkjkj');
@@ -72,7 +62,7 @@ class StringBuilder {
  */
 
 //======================16 block-5 ===========================
-/* class Car {
+ class Car {
   // Change code below this line
   static MAX_PRICE = 50000;
   #price;
@@ -104,7 +94,7 @@ console.log(audi.price); // 49000
 audi.price = 51000;
 console.log(audi.price); // 49000
 
-console.log('MAX_PRICE = ' + Car.MAX_PRICE); */
+console.log('MAX_PRICE = ' + Car.MAX_PRICE); 
 //===========================================================
 
 
