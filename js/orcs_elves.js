@@ -88,26 +88,26 @@ class Hero {
   }
 
   updateLifeLine(leftOrRightHero) {
-    const currMpInPercent = (this.#HP * 100) / this.#baseHP;
+    const currHpInPercent = (this.#HP * 100) / this.#baseHP;
     /*     console.log(leftOrRightHero, ": ", this.#MP, "<>", this.#baseMP); */
     if (leftOrRightHero === "left") {
       document.querySelector(
         ".left-warrior__lifeLine"
       ).style.background = `linear-gradient(to right, rgba(204,40,40,1) 0%,rgba(204,40,40,1)
-        ${currMpInPercent}%,rgba(255,252,252,1) 
-        ${currMpInPercent + 3}%,rgba(255,255,255,1) 100%)`;
+        ${currHpInPercent}%,rgba(255,252,252,1) 
+        ${currHpInPercent + 3}%,rgba(255,255,255,1) 100%)`;
     } else {
       document.querySelector(
         ".right-warrior__lifeLine"
       ).style.background = `linear-gradient(to right, rgba(204,40,40,1) 0%,rgba(204,40,40,1)
-      ${currMpInPercent}%,rgba(255,252,252,1) 
-      ${currMpInPercent + 3}%,rgba(255,255,255,1) 100%)`;
+      ${currHpInPercent}%,rgba(255,252,252,1) 
+      ${currHpInPercent + 3}%,rgba(255,255,255,1) 100%)`;
     }
   }
 
   updateManaLine(leftOrRightHero) {
     const currMpInPercent = (this.#MP * 100) / this.#baseMP;
-    console.log(leftOrRightHero, ": ", this.#MP, "<>", this.#baseMP);
+/*     console.log(leftOrRightHero, ": ", this.#MP, "<>", this.#baseMP); */
     if (leftOrRightHero === "left") {
       document.querySelector(
         ".left-warrior__manaLine"
@@ -137,13 +137,15 @@ class Hero {
 
   getDmg(dmg, leftOrRightHero) {
     this.#HP -= dmg;
-    this.updateLifeLine(leftOrRightHero === "left" ? "right" : "left");
+
     if (this.#HP < 1) {
       this.#HP = this.#baseHP;
       this.#MP = this.#baseMP;
       this.#exp = parseInt(this.#exp / 2);
       this.deathCount += 1;
     }
+    this.updateManaLine(leftOrRightHero === "left" ? "right" : "left");
+    this.updateLifeLine(leftOrRightHero === "left" ? "right" : "left");
   }
 
   /*   updateManaLifeLines(leftWarrior, rightWarrior) {
@@ -201,15 +203,14 @@ const startBtn = document.querySelector(".start-battle-btn");
 startBtn.addEventListener("click", () => handleStartBtn());
 
 const handleStartBtn = function () {
-
-//============AUTOBATTLE============
-/* 
+  //============AUTOBATTLE============
+   
   const button = document.getElementById("autoBattleBTN");
   setInterval(function () {
     button.click();
-  }, 1000); // this will make it click again every 1000 miliseconds
+  }, 100); // this will make it click again every 1000 miliseconds
 
- */
+ 
 
   const initialStats = getInitialStats();
 
@@ -285,6 +286,7 @@ const setCurrentStats = function (arr) {
   document.querySelector(".left-warrior__current-mp-text").textContent = initialMP_leftWarrior;
   document.querySelector(".right-warrior__current-hp-text").textContent = initialHP_rightWarrior;
   document.querySelector(".right-warrior__current-mp-text").textContent = initialMP_rightWarrior;
+  
 };
 
 const showInitialStats = function (leftWarrior, rightWarrior) {
