@@ -131,6 +131,7 @@ class Hero {
       this.#HP = this.#baseHP;
       this.#MP = this.#baseMP;
 
+      this.config.baseLevelExp += this.config.baseLevelExp * statsLevelUp;
       this.#exp === 0;
     }
   }
@@ -144,8 +145,13 @@ class Hero {
       this.#exp = parseInt(this.#exp / 2);
       this.deathCount += 1;
     }
-    this.updateManaLine(leftOrRightHero === "left" ? "right" : "left");
-    this.updateLifeLine(leftOrRightHero === "left" ? "right" : "left");
+    const whoTakesDamage = leftOrRightHero === "left" ? "right" : "left";
+    const dmgElement = document.querySelector(`.${whoTakesDamage}-warrior__dmg`);
+    dmgElement.classList.toggle("hidden-dmg");
+    //, 'visible-dmg'
+
+    this.updateManaLine(whoTakesDamage);
+    this.updateLifeLine(whoTakesDamage);
   }
 
   /*   updateManaLifeLines(leftWarrior, rightWarrior) {
@@ -205,10 +211,10 @@ startBtn.addEventListener("click", () => handleStartBtn());
 const handleStartBtn = function () {
   //============AUTOBATTLE============
    
-  const button = document.getElementById("autoBattleBTN");
+/*   const button = document.getElementById("autoBattleBTN");
   setInterval(function () {
     button.click();
-  }, 100); // this will make it click again every 1000 miliseconds
+  }, 10); */ // this will make it click again every 1000 miliseconds
 
  
 
