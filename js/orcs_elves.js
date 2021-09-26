@@ -107,7 +107,7 @@ class Hero {
 
   updateManaLine(leftOrRightHero) {
     const currMpInPercent = (this.#MP * 100) / this.#baseMP;
-/*     console.log(leftOrRightHero, ": ", this.#MP, "<>", this.#baseMP); */
+    /*     console.log(leftOrRightHero, ": ", this.#MP, "<>", this.#baseMP); */
     if (leftOrRightHero === "left") {
       document.querySelector(
         ".left-warrior__manaLine"
@@ -147,9 +147,11 @@ class Hero {
     }
     const whoTakesDamage = leftOrRightHero === "left" ? "right" : "left";
     const dmgElement = document.querySelector(`.${whoTakesDamage}-warrior__dmg`);
-    dmgElement.classList.toggle("hidden-dmg");
     //, 'visible-dmg'
-
+    setTimeout(function () {
+      dmgElement.classList.toggle("hidden-dmg");
+    }, 700);
+    dmgElement.classList.toggle("hidden-dmg");
     this.updateManaLine(whoTakesDamage);
     this.updateLifeLine(whoTakesDamage);
   }
@@ -210,13 +212,11 @@ startBtn.addEventListener("click", () => handleStartBtn());
 
 const handleStartBtn = function () {
   //============AUTOBATTLE============
-   
-/*   const button = document.getElementById("autoBattleBTN");
+
+   const button = document.getElementById("autoBattleBTN");
   setInterval(function () {
     button.click();
-  }, 10); */ // this will make it click again every 1000 miliseconds
-
- 
+  }, 700); // this will make it click again every 1000 miliseconds
 
   const initialStats = getInitialStats();
 
@@ -292,7 +292,6 @@ const setCurrentStats = function (arr) {
   document.querySelector(".left-warrior__current-mp-text").textContent = initialMP_leftWarrior;
   document.querySelector(".right-warrior__current-hp-text").textContent = initialHP_rightWarrior;
   document.querySelector(".right-warrior__current-mp-text").textContent = initialMP_rightWarrior;
-  
 };
 
 const showInitialStats = function (leftWarrior, rightWarrior) {
