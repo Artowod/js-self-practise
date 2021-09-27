@@ -78,3 +78,19 @@ const hat = {
 };
 
 console.log(hat);
+
+//========================================================================
+//==================================ТЕМА 13===============================
+//========================================================================
+
+//<button data-action='1' ></button>
+//<button data-pull = '1' ></button>
+
+addEventListener('click', e => { 
+    
+    //тогда в js обращаемся так: 
+    if (e.target.dataset.action === '1 ')
+        if (e.target.dataset.pull === '1 ')
+            if (e.target.tagName === 'BUTTON')
+                return true;
+});
