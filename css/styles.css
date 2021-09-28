@@ -1,111 +1,29 @@
 body {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 15px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* .element:nth-child(4) { */
-/*   flex-basis: 100%;  */ /* размер элемента флекса от размера родителя */
-/* } */
-
-.flex-margin,
-.flex-margin-tablet,
-.flex-margin-pc {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  max-width: 800px;
-  min-width: 80px;
-  /*   height: 200px; */
-  border: 2px solid tomato;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
+section {
+  font-size: 24px;
+  font-weight: 600;
 }
 
-/* .flex-margin-tablet {
-  @media screen and (min-width: 400px) {
-    display: none;
-  }
+a {
+  text-decoration: none;
+  
 }
 
-.flex-margin-pc {
-  @media screen and (min-width: 800px) {
-    display: none;
-  }
-}
- */
 
-.element:active {
-  background-color: green;
+.tasks__list {
+  list-style-type:decimal;
+  color:darkolivegreen
 }
 
-@media screen and (min-width: 400px) {
-  .flex-margin-tablet {
-    display: none;
-  }
-  .element:active {
-    background-color: blue;
-  }
+.battle{
+  color:tomato;
 }
 
-@media screen and (min-width: 800px) {
-  .flex-margin-pc {
-    display: none;
-  }
-  .element:active {
-    background-color: red;
-  }
+.snake{
+  color:darkgreen;
 }
-
-.element {
-  margin: 20px;
-  width: calc((100% - 6 * 40px) / 6);
-  min-width: 50px;
-  height: 50px;
-  border: 1px solid blue;
-  background-color: rgb(226, 236, 134);
-}
-
-/* .main-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-
-    border: 1px solid brown;
-  } */
-
-/*=========================*/
-
-/* .cell {
-  width: 200px;
-  height: 200px;
-  margin: 0px;
-  padding: 0px;
-  border: 1px solid gray;
-  background-color: rgb(86, 206, 132);
-  transition: background-color 2220ms linear, transform 2200ms linear;
-}
-
-.cell:hover {
-  background-color: red;
-  transform: rotate(360deg);
-}
-
-@media screen and (min-width: 400px) and (max-width: 600px) {
-  body {
-    background-color: orange;
-  }
-  .cell {
-    background-color: rgb(41, 223, 230);
-  }
-}
-@media screen and (min-width: 800px) and (max-width: 1000px) {
-  body {
-    background-color: blue;
-  }
-}
- */

@@ -7,139 +7,30 @@
   <title>practise</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css" />
-  <link rel="stylesheet" href="./css/orcs_elves.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
 <body>
-  <hero class="hero">
-    <h1>Orcs VS Elves! .... and Humans...</h1>
-  </hero>
+  <section class='tasks'>
 
-  <div class="battle-field">
-    <div class="warrior-area left-warrior">
-      <h2 class="warrior-area__left-warrior-name">Left Warrior:</h2>
-      <div class="info-area left-warrior__info">
-        <ul class="left-warrior__initial-data">
-          <li>
-            <label class="left-warrior__initial-hp-label" for="left-warrior__initial-hp-text">Initial HP</label>
-            <input class="left-warrior__initial-hp-text" type="text" id="left-warrior__initial-hp-text" />
-          </li>
-          <li>
-            <label class="left-warrior__initial-mp-label" for="left-warrior__initial-mp-text">Initial MP</label>
-            <input class="left-warrior__initial-mp-text" type="text" id="left-warrior__initial-mp-text" />
-          </li>
-        </ul>
+    <ul class='tasks__list'>
+      <li>
+        <a class='battle' href='./battle.html'> Orcs and Elves! - Lets Battle !</a>
+      </li>
+      <li>
+        <a class='snake' href='./snake.html'> SNAKE! - eat them ALL!</a>
+      </li>
+      <li></li>
+      <li></li>
+    </ul>
 
-        <ul class="left-warrior__current-data">
-          <li class="left-warrior__hp-wrapper">
-            <label class="left-warrior__current-hp-label"></label>
-            <label class="left-warrior__current-hp-text"> 0 </label>
-          </li>
-          <li class="left-warrior__mp-wrapper">
-            <label class="left-warrior__current-mp-label"></label>
-            <label class="left-warrior__current-mp-text"> 0 </label>
-          </li>
-          <li class="left-warrior__level-count">
-            <label class="left-warrior__current-level-label">Level:</label>
-            <label class="left-warrior__current-level-text"> 1 </label>
-          </li>
-          <li>
-            <label class="left-warrior__current-exp-label">Experience:</label>
-            <label class="left-warrior__current-exp-text"> 0 </label>
-          </li>
-          <li class="left-warrior__death-count">
-            <label class="left-warrior__death-count-label">Death:</label>
-            <label class="left-warrior__death-count-text"> 0 </label>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="left-warrior__img">
-      <div class="left-warrior__lifeLine"></div>
-      <div class="left-warrior__manaLine"></div>
-      <img class="left-warrior__img-link" src="./images/warrior-template.jpg" width=150px />
-      <!-- width="100" height="150" -->
-
-      <label class="left-warrior__dmg visible-dmg hidden-dmg">30</label><!-- movable -->
-    </div>
-      <img class="shoot-arrow" src="./images/shoot-arrow.jpg" width=50px />
-    <button class="shoot-btn" id="autoBattleBTN" type="button">Shoot!</button>
-    <div class="right-warrior__img">
-      <div class="right-warrior__lifeLine"></div>
-      <div class="right-warrior__manaLine"></div>
-
-      <img class="right-warrior__img-link" src="./images/warrior-template.jpg" width=150px />
-
-      <label class="right-warrior__dmg visible-dmg hidden-dmg">50</label><!-- movable -->
-    </div>
-
-    <div class="warrior-area right-warrior">
-      <h2 class="warrior-area__right-warrior-name">Right Warrior:</h2>
-      <div class="info-area right-warrior__info">
-        <ul class="right-warrior__initial-data">
-          <li>
-            <label class="right-warrior__initial-hp-label" for="right-warrior__initial-hp-text">Initial HP</label>
-            <input class="right-warrior__initial-hp-text" type="text" id="right-warrior__initial-hp-text" />
-          </li>
-          <li>
-            <label class="right-warrior__initial-mp-label" for="right-warrior__initial-mp-text">Initial MP
-            </label>
-            <input class="right-warrior__initial-mp-text" type="text" id="right-warrior__initial-mp-text" />
-          </li>
-        </ul>
-
-        <ul class="right-warrior__current-data">
-          <li class="right-warrior__hp-wrapper">
-            <label class="right-warrior__current-hp-label"></label>
-            <label class="right-warrior__current-hp-text"> 0 </label>
-          </li>
-          <li class="right-warrior__mp-wrapper">
-            <label class="right-warrior__current-mp-label"></label>
-            <label class="right-warrior__current-mp-text"> 0 </label>
-          </li>
-          <li class="right-warrior__level-count">
-            <label class="right-warrior__current-level-label">Level:</label>
-            <label class="right-warrior__current-level-text"> 1 </label>
-          </li>
-          <li>
-            <label class="right-warrior__current-exp-label">Experience:</label>
-            <label class="right-warrior__current-exp-text"> 0 </label>
-          </li>
-          <li class="right-warrior__death-count">
-            <label class="right-warrior__death-count-label">Death:</label>
-            <label class="right-warrior__death-count-text"> 0 </label>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="start-area">
-    <button class="start-battle-btn" type="button">fight!</button>
-
-    <div class="winner-area hidden">Round: 0</div>
-  </div>
-  <footer>
-    <section class="tips">
-      <div class="tips__container">
-        <h2> Мануальчик </h2>
-        <ul>
-          <li> Сперва задать начальные значения жизни и манны обоим воинам</li>
-          <li> Затем жмём кнопку FIGHT! для выбора Персонажей (Можно жать несколько раз)</li>
-          <li> удары наносятся по очереди каждым из персов По нажатии кнопки SHOOT!</li>
-          <li> стрелка показывает направление атаки</li>
-          <li> - </li>
-        </ul>
-
-      </div>
+  </section>
 
 
-    </section>
 
-  </footer>
   <!-- <script src="js/script.js"></script> -->
   <!-- <script src="js/shop.js"></script> -->
   <!-- <script src="js/dom.js"></script> -->
-  <script src="js/orcs_elves.js"></script>
   <!-- <script src="js/autocheck.js"></script> -->
   <!-- <script src="js/n_array.js"></script> -->
 </body>
