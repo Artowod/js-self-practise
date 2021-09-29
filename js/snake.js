@@ -40,6 +40,8 @@ class Snake {
     snakeField.innerHTML = "";
     this.locationX = this.defaultLocationX;
     this.locationY = this.defaultLocationY;
+    treasureLeft = 20;
+    treasureEaten = 0;
   }
 }
 /* let snake = {
@@ -51,10 +53,11 @@ class Snake {
 // 24 x 25
 
 const snake = new Snake();
+let snakeColor = "green";
 
 const showSnake = function () {
   const snakePlace = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY}']`);
-  snakePlace.style.backgroundColor = "green";
+  snakePlace.style.backgroundColor = snakeColor;
 };
 
 const handleClick = document.addEventListener("click", (e) => {
@@ -66,6 +69,8 @@ const handleStartBtn = startBtn.addEventListener("click", (e) => {
   setSnakeField();
   setTreasureMap();
   showSnake();
+  document.querySelector(".snake-result__eaten-apples").textContent = "0";
+  document.querySelector(".snake-result__apples-left").textContent = "20";
 });
 
 const eatenApplesSpan = document.querySelector(".snake-result__eaten-apples");
@@ -80,6 +85,11 @@ const isTreasureHere = function () {
   } else if (checkedNode.type === "apple") {
     score += 10;
   }
+  checkedNode.treasure = "false";
+  checkedNode.type = "";
+  const eatenApple = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY}']`);
+  eatenApple.style.backgroundImage = `url(../images/eatenApple.jpg)`;
+
   treasureLeft -= 1;
   treasureEaten += 1;
 
@@ -93,13 +103,22 @@ const isFieldBorderHere = function () {
   console.log(snake.locationX, snake.locationY);
   if (
     snake.locationY === 0 ||
-    snake.locationY === fieldHeight+1 ||
+    snake.locationY === fieldHeight + 1 ||
     snake.locationX === 0 ||
-    snake.locationX === (fieldWidth + 1)
+    snake.locationX === fieldWidth + 1
   ) {
     console.log("You are die! didn`t see a border ! HA HA HA ! :)");
     return true;
   }
+};
+
+const isSnakeBodyHere = function () {
+  const checkedNode = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY}']`);
+
+  if (checkedNode.style.backgroundColor === snakeColor) {
+    return true;
+  }
+  return false;
 };
 
 const handleArrow = document.addEventListener("keydown", (e) => {
@@ -107,13 +126,12 @@ const handleArrow = document.addEventListener("keydown", (e) => {
     snake.locationY -= 1;
     if (isFieldBorderHere()) {
       snake.locationY += 1;
-    }
-    if (isTreasureHere()) {
+    } else if (isSnakeBodyHere()) {
+      snake.locationY += 1;
+    } else if (isTreasureHere()) {
       console.log("МНЯМ!");
     }
 
-    /* if (isSnakeBodyHere()) {
-    } */
     showSnake();
     console.log("up");
   }
@@ -121,8 +139,9 @@ const handleArrow = document.addEventListener("keydown", (e) => {
     snake.locationY += 1;
     if (isFieldBorderHere()) {
       snake.locationY -= 1;
-    }
-    if (isTreasureHere()) {
+    } else if (isSnakeBodyHere()) {
+      snake.locationY -= 1;
+    } else if (isTreasureHere()) {
       console.log("МНЯМ!");
     }
     showSnake();
@@ -133,8 +152,9 @@ const handleArrow = document.addEventListener("keydown", (e) => {
 
     if (isFieldBorderHere()) {
       snake.locationX += 1;
-    }
-    if (isTreasureHere()) {
+    } else if (isSnakeBodyHere()) {
+      snake.locationX += 1;
+    } else if (isTreasureHere()) {
       console.log("МНЯМ!");
     }
 
@@ -145,8 +165,9 @@ const handleArrow = document.addEventListener("keydown", (e) => {
     snake.locationX += 1;
     if (isFieldBorderHere()) {
       snake.locationX -= 1;
-    }
-    if (isTreasureHere()) {
+    } else if (isSnakeBodyHere()) {
+      snake.locationX -= 1;
+    } else if (isTreasureHere()) {
       console.log("МНЯМ!");
     }
 
