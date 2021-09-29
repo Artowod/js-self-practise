@@ -66,3 +66,16 @@ div {
 .snake-result__apples-left {
   color: brown;
 }
+
+.tips__list {
+  text-align: left;
+}
+
+.tips__container {
+  margin: 0 auto;
+  padding-top: 2px;
+  max-width: 600px;
+  border: 5px solid darkgreen;
+  border-radius: 5px;
+  background-color: darkkhaki;
+}
