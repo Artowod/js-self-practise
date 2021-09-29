@@ -51,6 +51,17 @@ class Snake {
 
 } */
 // 24 x 25
+const winner = function () {
+  document.removeEventListener("keydown", handleArrowFunction);
+  /*   treasureMap.map((value, arr, index) => {
+
+ */
+  for (let row = 1; row <= fieldHeight; row += 1) {
+    for (let col = 1; col <= fieldWidth; col += 1) {
+      snakeField.querySelector(`div[data-location = '${col},${row}']`).style.backgroundColor = "orange";
+    }
+  }
+};
 
 const snake = new Snake();
 let snakeColor = "green";
@@ -79,7 +90,7 @@ const leftApplesSpan = document.querySelector(".snake-result__apples-left");
 const isTreasureHere = function () {
   const checkedNode = treasureMap[snake.locationX][snake.locationY];
   if (checkedNode.treasure !== "true") return false;
-  console.log("->", checkedNode.type);
+  /* console.log("->", checkedNode.type); */
   if (checkedNode.type === "diamond") {
     score += 100;
   } else if (checkedNode.type === "apple") {
@@ -95,12 +106,17 @@ const isTreasureHere = function () {
 
   eatenApplesSpan.textContent = treasureEaten;
   leftApplesSpan.textContent = treasureLeft;
+
+  if (treasureLeft === 0) {
+    winner();
+  }
+
   return true;
 };
 
 const isFieldBorderHere = function () {
   const checkedNode = treasureMap[snake.locationX][snake.locationY];
-  console.log(snake.locationX, snake.locationY);
+  /*   console.log(snake.locationX, snake.locationY); */
   if (
     snake.locationY === 0 ||
     snake.locationY === fieldHeight + 1 ||
@@ -121,7 +137,8 @@ const isSnakeBodyHere = function () {
   return false;
 };
 
-const handleArrow = document.addEventListener("keydown", (e) => {
+function handleArrowFunction(e) {
+  console.log("=");
   if (e.key === "ArrowUp") {
     snake.locationY -= 1;
     if (isFieldBorderHere()) {
@@ -179,7 +196,16 @@ const handleArrow = document.addEventListener("keydown", (e) => {
   console.log(e.target);
   console.log(e.currentTarget);
  */
-});
+}
+
+const handleArrow = document.addEventListener("keydown", handleArrowFunction);
+
+/* function handleArrowFuncti(e) {
+  console.log("+");
+}
+ */
+
+/* const handleArrow = document.addEventListener("keydown", handleArrowFuncti); */
 
 const setTreasureMap = function () {
   for (let i = 0; i < 20; i++) {
@@ -189,7 +215,7 @@ const setTreasureMap = function () {
     treasureMap[randomCol][randomRow].treasure = "true";
     treasureMap[randomCol][randomRow].type = "apple";
 
-    console.log(randomCol, randomRow, treasureMap[randomCol][randomRow].treasure);
+    /*     console.log(randomCol, randomRow, treasureMap[randomCol][randomRow].treasure); */
 
     const node = snakeField.querySelector(`div[data-location = '${randomCol},${randomRow}']`);
     node.style.backgroundRepeat = `no-repeat`;
@@ -207,7 +233,7 @@ const setSnakeField = function () {
         treasure: "false",
         type: "",
       };
-      console.log(col, row, treasureMap[col][row].treasure);
+      /*       console.log(col, row, treasureMap[col][row].treasure); */
     }
   }
 };
