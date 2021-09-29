@@ -88,7 +88,7 @@ const isTreasureHere = function () {
   checkedNode.treasure = "false";
   checkedNode.type = "";
   const eatenApple = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY}']`);
-  eatenApple.style.backgroundImage = `url(../images/eatenApple.jpg)`;
+  eatenApple.style.backgroundImage = `url(./images/eatenapple.jpg)`;
 
   treasureLeft -= 1;
   treasureEaten += 1;
@@ -194,7 +194,7 @@ const setTreasureMap = function () {
     const node = snakeField.querySelector(`div[data-location = '${randomCol},${randomRow}']`);
     node.style.backgroundRepeat = `no-repeat`;
     node.style.backgroundSize = `contain`;
-    node.style.backgroundImage = `url(../images/apple.jpg)`;
+    node.style.backgroundImage = `url(./images/apple.jpg)`;
     /*       console.log(node); */
   }
 };
