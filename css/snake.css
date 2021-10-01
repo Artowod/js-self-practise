@@ -79,3 +79,13 @@ div {
   border-radius: 5px;
   background-color: darkkhaki;
 }
+
+.js-date , .js-clock-min, .js-clock-sec
+{
+font-weight: 700;
+}
+
+.date-name, .clock-name {
+  margin-right: 5px;
+  font-weight: 600;
+}

@@ -1,5 +1,7 @@
 "use strict";
 
+console.log('Lodash is here: 1+2 =',_.add(1, 2));
+
 const snakeField = document.querySelector(".snake-field");
 const startBtn = document.querySelector(".snake-result__start-btn ");
 
@@ -51,11 +53,32 @@ class Snake {
 
 } */
 // 24 x 25
+
+  const date = new Date();
+document.querySelector(".js-date").textContent = `${date.getDate().toString().padStart(2, "0")}.
+  ${(date.getMonth()+1).toString().padStart(2, "0")}`;
+
+
+
+let clockId;
+const startClock = function () {
+  let sec = 0;
+  let min = 0;
+  clockId = setInterval(param => {
+    if (sec === 59) {
+      sec = 0;
+      document.querySelector(".js-clock-min").textContent = (++min).toString(10).padStart(2, "0");
+    }
+    document.querySelector(".js-clock-sec").textContent = (++sec).toString(10).padStart(2, "0");
+  }, 1000);
+}
+
+
 const winner = function () {
   document.removeEventListener("keydown", handleArrowFunction);
-  /*   treasureMap.map((value, arr, index) => {
-
- */
+  
+  clearInterval(clockId);
+ 
   for (let row = 1; row <= fieldHeight; row += 1) {
     for (let col = 1; col <= fieldWidth; col += 1) {
       snakeField.querySelector(`div[data-location = '${col},${row}']`).style.backgroundColor = "orange";
@@ -82,6 +105,7 @@ const handleStartBtn = startBtn.addEventListener("click", (e) => {
   showSnake();
   document.querySelector(".snake-result__eaten-apples").textContent = "0";
   document.querySelector(".snake-result__apples-left").textContent = "20";
+  startClock();
 });
 
 const eatenApplesSpan = document.querySelector(".snake-result__eaten-apples");
@@ -192,37 +216,28 @@ function handleArrowFunction(e) {
     console.log("right");
   }
 
-  /*   console.log(e);
-  console.log(e.target);
-  console.log(e.currentTarget);
- */
 }
 
 const handleArrow = document.addEventListener("keydown", handleArrowFunction);
 
-/* function handleArrowFuncti(e) {
-  console.log("+");
-}
- */
-
-/* const handleArrow = document.addEventListener("keydown", handleArrowFuncti); */
-
 const setTreasureMap = function () {
-  for (let i = 0; i < 20; i++) {
+  let count = 1;
+  do {
     let randomRow = parseInt(Math.random() * (fieldHeight - 1) + 1);
     let randomCol = parseInt(Math.random() * (fieldWidth - 1) + 1);
+    if (treasureMap[randomCol][randomRow].treasure === "false") {
+      treasureMap[randomCol][randomRow].treasure = "true";
+      treasureMap[randomCol][randomRow].type = "apple";
 
-    treasureMap[randomCol][randomRow].treasure = "true";
-    treasureMap[randomCol][randomRow].type = "apple";
-
-    /*     console.log(randomCol, randomRow, treasureMap[randomCol][randomRow].treasure); */
-
-    const node = snakeField.querySelector(`div[data-location = '${randomCol},${randomRow}']`);
-    node.style.backgroundRepeat = `no-repeat`;
-    node.style.backgroundSize = `contain`;
-    node.style.backgroundImage = `url(./images/apple.jpg)`;
-    /*       console.log(node); */
-  }
+      /*     console.log(randomCol, randomRow, treasureMap[randomCol][randomRow].treasure); */
+      const node = snakeField.querySelector(`div[data-location = '${randomCol},${randomRow}']`);
+      node.style.backgroundRepeat = `no-repeat`;
+      node.style.backgroundSize = `contain`;
+      node.style.backgroundImage = `url(./images/apple.jpg)`;
+      /*       console.log(node); */
+      count += 1;
+    }
+  } while (count <= 20);
 };
 
 const setSnakeField = function () {
@@ -237,10 +252,3 @@ const setSnakeField = function () {
     }
   }
 };
-
-/* treasureMap[(0, 1)] = {
-  treasure: true,
-  type: "diamond",
-}; */
-
-/* console.log(treasureMap); */
