@@ -1,6 +1,6 @@
 "use strict";
 
-console.log('Lodash is here: 1+2 =',_.add(1, 2));
+console.log("Lodash is here: 1+2 =", _.add(1, 2));
 
 const snakeField = document.querySelector(".snake-field");
 const startBtn = document.querySelector(".snake-result__start-btn ");
@@ -13,9 +13,9 @@ const oneBlock() => {
     return result;
 }
  */
-
+const treasureNumber = 70;
 let score = 0;
-let treasureLeft = 20;
+let treasureLeft = treasureNumber;
 let treasureEaten = 0;
 const fieldWidth = 24;
 const fieldHeight = 25;
@@ -42,7 +42,7 @@ class Snake {
     snakeField.innerHTML = "";
     this.locationX = this.defaultLocationX;
     this.locationY = this.defaultLocationY;
-    treasureLeft = 20;
+    treasureLeft = treasureNumber;
     treasureEaten = 0;
   }
 }
@@ -54,31 +54,38 @@ class Snake {
 } */
 // 24 x 25
 
-  const date = new Date();
+const date = new Date();
 document.querySelector(".js-date").textContent = `${date.getDate().toString().padStart(2, "0")}.
-  ${(date.getMonth()+1).toString().padStart(2, "0")}`;
-
-
+  ${(date.getMonth() + 1).toString().padStart(2, "0")}`;
 
 let clockId;
 const startClock = function () {
   let sec = 0;
   let min = 0;
-  clockId = setInterval(param => {
+  clockId = setInterval((param) => {
     if (sec === 59) {
       sec = 0;
       document.querySelector(".js-clock-min").textContent = (++min).toString(10).padStart(2, "0");
     }
     document.querySelector(".js-clock-sec").textContent = (++sec).toString(10).padStart(2, "0");
   }, 1000);
-}
+};
 
+/* const isTheEnd = function () {
+  const checkedNodeRight = snakeField.querySelector(`div[data-location = '${snake.locationX+1},${snake.locationY}']`);
+  const checkedNodeLeft = snakeField.querySelector(`div[data-location = '${snake.locationX-1},${snake.locationY}']`);
+  const checkedNodeDown = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY+1}']`);
+  const checkedNodeUp = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY-1}']`);
+  isFieldBorderHere()
+  isSnakeBodyHere()
+
+} */
 
 const winner = function () {
   document.removeEventListener("keydown", handleArrowFunction);
-  
+
   clearInterval(clockId);
- 
+
   for (let row = 1; row <= fieldHeight; row += 1) {
     for (let col = 1; col <= fieldWidth; col += 1) {
       snakeField.querySelector(`div[data-location = '${col},${row}']`).style.backgroundColor = "orange";
@@ -104,17 +111,18 @@ const handleStartBtn = startBtn.addEventListener("click", (e) => {
   setTreasureMap();
   showSnake();
   document.querySelector(".snake-result__eaten-apples").textContent = "0";
-  document.querySelector(".snake-result__apples-left").textContent = "20";
+  document.querySelector(".snake-result__apples-left").textContent = `${treasureNumber}`;
   startClock();
 });
 
 const eatenApplesSpan = document.querySelector(".snake-result__eaten-apples");
 const leftApplesSpan = document.querySelector(".snake-result__apples-left");
 
-const isTreasureHere = function () {
-  const checkedNode = treasureMap[snake.locationX][snake.locationY];
+const isTreasureHere = function (offsetX, offsetY) {
+  const checkedNode = treasureMap[snake.locationX + offsetX][snake.locationY + offsetY];
   if (checkedNode.treasure !== "true") return false;
   /* console.log("->", checkedNode.type); */
+  console.log("МНЯМ!");
   if (checkedNode.type === "diamond") {
     score += 100;
   } else if (checkedNode.type === "apple") {
@@ -122,7 +130,9 @@ const isTreasureHere = function () {
   }
   checkedNode.treasure = "false";
   checkedNode.type = "";
-  const eatenApple = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY}']`);
+  const eatenApple = snakeField.querySelector(
+    `div[data-location = '${snake.locationX + offsetX},${snake.locationY + offsetY}']`
+  );
   eatenApple.style.backgroundImage = `url(./images/eatenapple.jpg)`;
 
   treasureLeft -= 1;
@@ -138,22 +148,24 @@ const isTreasureHere = function () {
   return true;
 };
 
-const isFieldBorderHere = function () {
-  const checkedNode = treasureMap[snake.locationX][snake.locationY];
-  /*   console.log(snake.locationX, snake.locationY); */
+const isFieldBorderHere = function (offsetX, offsetY) {
+  const checkedNode = treasureMap[snake.locationX + offsetX][snake.locationY + offsetY];
   if (
-    snake.locationY === 0 ||
-    snake.locationY === fieldHeight + 1 ||
-    snake.locationX === 0 ||
-    snake.locationX === fieldWidth + 1
+    snake.locationY + offsetY === 0 ||
+    snake.locationY + offsetY === fieldHeight + 1 ||
+    snake.locationX + offsetX === 0 ||
+    snake.locationX + offsetX === fieldWidth + 1
   ) {
-    console.log("You are die! didn`t see a border ! HA HA HA ! :)");
+    console.log("Border !");
     return true;
   }
+  return false;
 };
 
-const isSnakeBodyHere = function () {
-  const checkedNode = snakeField.querySelector(`div[data-location = '${snake.locationX},${snake.locationY}']`);
+const isSnakeBodyHere = function (offsetX, offsetY) {
+  const checkedNode = snakeField.querySelector(
+    `div[data-location = '${snake.locationX + offsetX},${snake.locationY + offsetY}']`
+  );
 
   if (checkedNode.style.backgroundColor === snakeColor) {
     return true;
@@ -162,60 +174,44 @@ const isSnakeBodyHere = function () {
 };
 
 function handleArrowFunction(e) {
-  console.log("=");
+  /*   isTheEnd(); */
   if (e.key === "ArrowUp") {
-    snake.locationY -= 1;
-    if (isFieldBorderHere()) {
-      snake.locationY += 1;
-    } else if (isSnakeBodyHere()) {
-      snake.locationY += 1;
-    } else if (isTreasureHere()) {
-      console.log("МНЯМ!");
-    }
-
+    /* snake.locationY -= 1; */
+    if (!isFieldBorderHere(0, -1))
+      if (!isSnakeBodyHere(0, -1)) {
+        isTreasureHere(0, -1);
+        snake.locationY -= 1;
+      }
     showSnake();
     console.log("up");
   }
   if (e.key === "ArrowDown") {
-    snake.locationY += 1;
-    if (isFieldBorderHere()) {
-      snake.locationY -= 1;
-    } else if (isSnakeBodyHere()) {
-      snake.locationY -= 1;
-    } else if (isTreasureHere()) {
-      console.log("МНЯМ!");
-    }
+    if (!isFieldBorderHere(0, 1))
+      if (!isSnakeBodyHere(0, 1)) {
+        isTreasureHere(0, 1);
+        snake.locationY += 1;
+      }
     showSnake();
     console.log("down");
   }
   if (e.key === "ArrowLeft") {
-    snake.locationX -= 1;
-
-    if (isFieldBorderHere()) {
-      snake.locationX += 1;
-    } else if (isSnakeBodyHere()) {
-      snake.locationX += 1;
-    } else if (isTreasureHere()) {
-      console.log("МНЯМ!");
-    }
-
+    if (!isFieldBorderHere(-1, 0))
+      if (!isSnakeBodyHere(-1, 0)) {
+        isTreasureHere(-1, 0);
+        snake.locationX -= 1;
+      }
     showSnake();
     console.log("left");
   }
   if (e.key === "ArrowRight") {
-    snake.locationX += 1;
-    if (isFieldBorderHere()) {
-      snake.locationX -= 1;
-    } else if (isSnakeBodyHere()) {
-      snake.locationX -= 1;
-    } else if (isTreasureHere()) {
-      console.log("МНЯМ!");
-    }
-
+    if (!isFieldBorderHere(1, 0))
+      if (!isSnakeBodyHere(1, 0)) {
+        isTreasureHere(1, 0);
+        snake.locationX += 1;
+      }
     showSnake();
     console.log("right");
   }
-
 }
 
 const handleArrow = document.addEventListener("keydown", handleArrowFunction);
@@ -237,7 +233,7 @@ const setTreasureMap = function () {
       /*       console.log(node); */
       count += 1;
     }
-  } while (count <= 20);
+  } while (count <= treasureNumber);
 };
 
 const setSnakeField = function () {
