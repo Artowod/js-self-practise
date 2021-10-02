@@ -20,16 +20,16 @@
 
     </div>
     <div class="snake-result">
-        <p class= 'clock-name'>Time: </p><span class = 'js-clock-min'>00</span><span>:</span></span><span class='js-clock-sec'>00</span>
+        <p class='clock-name'>Time: </p><span class='js-clock-min'>00</span><span>:</span></span><span class='js-clock-sec'>00</span>
         <p class='snake-result__p'>Eaten apples:<span class='snake-result__eaten-apples'>0</span> </p>
         <button class='snake-result__start-btn' type='button'>start</button>
         <p class='snake-result__p'>Apples left:<span class='snake-result__apples-left'>--</span> </p>
         <p class='date-name'>Date: </p><span class='js-date'>00:00:00</span>
     </div>
     <footer>
-        <section class="tips">
-            <div class="tips__container">
-                <ul class='tips__list'>
+        <div class="footer-container">
+            <div class="footer-container__tips">
+                <ul class='footer-container__tips-list'>
                     <li>
                         Пользуемся стрелками
                     </li>
@@ -49,15 +49,19 @@
                         ...скоро будут очки и разные сокровища
                     </li>
                 </ul>
-
             </div>
-        </section>
+            <div class='footer-container__settings'>
+                <p class="footer-container__settings-name">Задай, сколько яблок разбросать. Иначе разбросаю 70 !</p>
+                <input class='footer-container__apples-number' type='number' min="1" max="100">
+            </div>
+        </div>
     </footer>
 
     <script src=https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js></script>
-<!--     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/debounce.js"></script>
+    <!--     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/debounce.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/throttle.js"></script>
- -->    <script src="./js/snake.js"></script>
+ -->
+    <script src="./js/snake.js"></script>
 
 </body>
 

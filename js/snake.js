@@ -13,7 +13,7 @@ const oneBlock() => {
     return result;
 }
  */
-const treasureNumber = 70;
+let treasureNumber = 70;
 let score = 0;
 let treasureLeft = treasureNumber;
 let treasureEaten = 0;
@@ -58,8 +58,9 @@ const date = new Date();
 document.querySelector(".js-date").textContent = `${date.getDate().toString().padStart(2, "0")}.
   ${(date.getMonth() + 1).toString().padStart(2, "0")}`;
 
-let clockId;
+let clockId = null;
 const startClock = function () {
+  if (clockId) clearInterval(clockId);
   let sec = 0;
   let min = 0;
   clockId = setInterval((param) => {
@@ -83,9 +84,8 @@ const startClock = function () {
 
 const winner = function () {
   document.removeEventListener("keydown", handleArrowFunction);
-
   clearInterval(clockId);
-
+  clockId = null;
   for (let row = 1; row <= fieldHeight; row += 1) {
     for (let col = 1; col <= fieldWidth; col += 1) {
       snakeField.querySelector(`div[data-location = '${col},${row}']`).style.backgroundColor = "orange";
@@ -105,9 +105,23 @@ const handleClick = document.addEventListener("click", (e) => {
   console.log(e.target);
 });
 
+const setApplesNumber = function () {
+  const applesNumber = parseInt(document.querySelector(".footer-container__apples-number").value);
+    console.log(applesNumber);
+  if (applesNumber) {
+    console.log(typeof applesNumber);
+    treasureNumber = applesNumber <= 0 ? 1 : applesNumber;
+    treasureNumber = applesNumber > 100 ? 100 : applesNumber;
+    document.querySelector(".footer-container__apples-number").value = treasureNumber;
+    console.log(treasureNumber);
+  }
+};
+
 const handleStartBtn = startBtn.addEventListener("click", (e) => {
+  const handleArrow = document.addEventListener("keydown", handleArrowFunction);
+  setApplesNumber();
   snake.gameReset();
-  setSnakeField();
+  buildSnakeField();
   setTreasureMap();
   showSnake();
   document.querySelector(".snake-result__eaten-apples").textContent = "0";
@@ -214,8 +228,6 @@ function handleArrowFunction(e) {
   }
 }
 
-const handleArrow = document.addEventListener("keydown", handleArrowFunction);
-
 const setTreasureMap = function () {
   let count = 1;
   do {
@@ -236,7 +248,7 @@ const setTreasureMap = function () {
   } while (count <= treasureNumber);
 };
 
-const setSnakeField = function () {
+const buildSnakeField = function () {
   for (let row = 1; row <= fieldHeight; row += 1) {
     for (let col = 1; col <= fieldWidth; col += 1) {
       snakeField.insertAdjacentHTML("beforeend", `<div class="one-block" data-location="${col},${row}""></div> `);

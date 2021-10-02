@@ -67,11 +67,14 @@ div {
   color: brown;
 }
 
-.tips__list {
+.footer-container__tips-list {
   text-align: left;
 }
+.footer-container__tips {
+  min-width:60%;
+}
 
-.tips__container {
+.footer-container {
   margin: 0 auto;
   padding-top: 2px;
   max-width: 600px;
@@ -89,3 +92,13 @@ font-weight: 700;
   margin-right: 5px;
   font-weight: 600;
 }
+
+.footer-container{
+  display:flex;
+
+}
+
+/* .footer-container__apples-count{
+  display:online-block;
+} */
+
