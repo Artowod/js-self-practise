@@ -1,8 +1,84 @@
- 'use strict'; 
+"use strict";
 
+// function makeSizer(size) {
+//   return function () {
+//     document.body.style.fontSize = size + "px";
+//   };
+// }
 
+// function makeSizer(size) {
+//   console.log("*");
+//   document.body.style.fontSize = size + "px";
+// }
+
+function makeSizer(size) {
+  console.log(size);
+  return function () {
+    console.log(size);
+    document.body.style.fontSize = size + "px";
+  };
+}
+
+const size12 = makeSizer(12);
+const size14 = makeSizer(14);
+const size16 = makeSizer(16);
+
+// console.log("size12", size12);
+
+document.getElementById("size-12").onclick = size12;
+document.getElementById("size-14").onclick = size14;
+document.getElementById("size-16").onclick = size16;
+
+// const Car = Object.create(Object);
+// Car.isOpel = true;
+function Car() {
+  this.isOpel = true;
+}
+
+class Tank {
+  constructor() {
+    this.isWeapon = true;
+    this.isCannon = false;
+    this.speed = 0;
+
+    this.decreaseSpeed = function (spd) {
+      this.speed -= spd;
+    };
+  }
+
+  increaseSpeed(spd) {
+    this.speed += spd;
+  }
+}
+function jeep() {
+  this.type = "humer";
+}
+// Car.prototype = new Tank();
+// Object.setPrototypeOf(Car, Tank);
+// console.group(new Car());
+// console.group(Car.prototype);
+const Abrams = new Tank();
+Object.defineProperty(Abrams, "cannon", { value: "120mm", writable: true, configurable: true });
+Abrams.power = 3000;
+Abrams.cannon = "120mm";
+//delete Abrams.cannon;
+Abrams.weight = "55tonn";
+console.log(Abrams.power);
+// Object.freeze(Abrams);
+console.log(Abrams.isCannon);
+try {
+  Abrams.power = 5000;
+  Abrams.weight = "57tonn";
+  Abrams.speed = "50m/h";
+} catch (err) {
+  console.log("you can`t change it - object is frozen.", err);
+}
+console.log("Abrams", Abrams);
+console.log("Jeep", jeep);
+console.log("power", Abrams.power);
+console.log("weight", Abrams.weight);
 //=======================18 block5 =========================
- /*  class User {
+/*  class User {
  //email;  // ??????????????? - НУЖНА - ИНАЧЕ ОШИБКА
 
   constructor(email) {
@@ -30,10 +106,9 @@ console.log(user1.email1()); /* */
 	}
 }   */
 /* const user1 = new User(); */
-/*console.log(adm.email);  */ 
+/*console.log(adm.email);  */
 /* console.log(Admin.AccessLevel.BASIC); */
 //==========================================================
-
 
 /* 
 class StringBuilder {
@@ -62,43 +137,40 @@ class StringBuilder {
  */
 
 //======================16 block-5 ===========================
- class Car {
-  // Change code below this line
-  static MAX_PRICE = 50000;
-  #price;
+//  class Car {
+//   // Change code below this line
+//   static MAX_PRICE = 50000;
+//   #price;
 
-  constructor({ price }) {
-    this.#price = price;
-  }
+//   constructor({ price }) {
+//     this.#price = price;
+//   }
 
-  get price() {
-    return this.#price;
-  }
+//   get price() {
+//     return this.#price;
+//   }
 
-  set price(newPrice) {
-    console.log("newPrice =  " + newPrice);
-    console.log("MAX_PRICE =  " + Car.MAX_PRICE);
-    if (newPrice <= Car.MAX_PRICE) {
-          console.log('*');
-      this.#price = newPrice;
-    }
-  }
-  // Change code above this line
-}
-const audi = new Car({ price: 35000 });
-console.log(audi.price); // 35000
+//   set price(newPrice) {
+//     console.log("newPrice =  " + newPrice);
+//     console.log("MAX_PRICE =  " + Car.MAX_PRICE);
+//     if (newPrice <= Car.MAX_PRICE) {
+//           console.log('*');
+//       this.#price = newPrice;
+//     }
+//   }
+//   // Change code above this line
+// }
+// const audi = new Car({ price: 35000 });
+// console.log(audi.price); // 35000
 
-audi.price = 49000;
-console.log(audi.price); // 49000
+// audi.price = 49000;
+// console.log(audi.price); // 49000
 
-audi.price = 51000;
-console.log(audi.price); // 49000
+// audi.price = 51000;
+// console.log(audi.price); // 49000
 
-console.log('MAX_PRICE = ' + Car.MAX_PRICE); 
+// console.log('MAX_PRICE = ' + Car.MAX_PRICE);
 //===========================================================
-
-
-
 
 /* const numbers = [1, 2, 3, 4];
   
@@ -108,10 +180,9 @@ numbers.forEach(function (value, index) {
 
 }); */
 
-
 /*=============================task 45  ==block4 ================*/
-//Дополни код так, чтобы в переменной names 
-//получился массив имён авторов в алфавитном порядке, 
+//Дополни код так, чтобы в переменной names
+//получился массив имён авторов в алфавитном порядке,
 //рейтинг книг которых больше значения переменной MIN_BOOK_RATING.
 
 /*  const books = [
@@ -149,10 +220,6 @@ console.log(books.reduce((acc, item) => acc + item.rating,0)); */
 
 console.log(names); */
 /*==========================================================*/
-
-
-
-
 
 /* 
 const users = [
@@ -222,8 +289,8 @@ const users = [
 ];
  */
 /*===========================48  block4==============================*/
-//Дополни функцию getTotalBalanceByGender(users, gender) так, 
-//чтобы она возвращала общий баланс пользователей(свойство balance), 
+//Дополни функцию getTotalBalanceByGender(users, gender) так,
+//чтобы она возвращала общий баланс пользователей(свойство balance),
 //пол которых(свойство gender) совпадает со значением параметра gender.
 
 /* const getTotalBalanceByGender = (users, gender) => {
@@ -234,10 +301,9 @@ const gender = 'female';
 console.log("--", getTotalBalanceByGender(users, gender));  */
 /*===================================================================*/
 
-
 /*===========================47  block4==============================*/
-//Дополни функцию getSortedFriends(users) так, 
-//чтобы она возвращала массив уникальных имён друзей(свойство friends) 
+//Дополни функцию getSortedFriends(users) так,
+//чтобы она возвращала массив уникальных имён друзей(свойство friends)
 //отсортированный по алфавиту.
 
 /* const getSortedFriends = users => {
@@ -251,10 +317,9 @@ console.log("--", getTotalBalanceByGender(users, gender));  */
 console.log("--", getSortedFriends(users)); */
 /*===================================================================*/
 
-
 /*===========================46  block4==============================*/
-// Дополни функцию getNamesSortedByFriendCount(users) так, 
-// чтобы она возвращала массив имён пользователей 
+// Дополни функцию getNamesSortedByFriendCount(users) так,
+// чтобы она возвращала массив имён пользователей
 // отсортированный по возрастанию количества их друзей(свойство friends).
 
 // Change code below this line
@@ -268,8 +333,6 @@ console.log(getNamesSortedByFriendCount(users));
  */
 // Change code above this line
 //======================================================================
-
-
 
 /* ------------------------37  -block4---------------
 // Change code below this line
@@ -302,14 +365,11 @@ console.log(getTotalFriendCount(users));
 console.log(getFriends(users)); */
 //------------------------------------------------
 
-
-
 //const numbers = [5, 10, 15, 20, 25];
 
 //numbers.forEach(function (value, index) {
 //  console.log(`Индекс ${index}, значение ${value}`);
 //});
-
 
 /*==========================задачка================================*/
 
@@ -361,7 +421,6 @@ const arrCount = function (initialString) {
 
  */
 
-
 /* const arrCount = function (initialString) {
   let result=0 ;
   let indexArrOne = 0;
@@ -391,7 +450,7 @@ console.log(arrCount(initial));
 //=   without /function/ expression   =//
 //ex1
 //const fun = (a, b, c) => {
-  
+
 //  return a + b + c;
 //}
 
@@ -408,7 +467,6 @@ console.log(arrCount(initial));
 
 //const fun4 = (key,val) => ({[key]:val})
 
-
 //console.log(fun4('car','opel'));
 
 //======================= foreach=======================
@@ -418,8 +476,6 @@ console.log(arrCount(initial));
 //numbers.forEach(function (value, index) {
 //  console.log(`Индекс ${index}, значение ${value}`);
 //});
-
-
 
 //======================= block-4 callback=======================
 
@@ -451,7 +507,6 @@ console.log(x); */
 // console.log("---------1---------")
 // setTimeout(function () { console.log("УРААА") }, 5000);
 // console.log("---------2---------")
-
 
 //======================= block-3 objects=======================
 //---35--
