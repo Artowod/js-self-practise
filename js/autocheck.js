@@ -1,82 +1,119 @@
 "use strict";
+window.x = 1;
+const obj2 = {
+  x: 222,
+};
+const obj = {
+  x: 12,
+  fun() {
+    alert(this.x);
+  },
+};
+obj.fun.apply(obj2);
+//-------------------------------------------------------------
+
+// function showFullName() {
+//   alert(this.firstName + " " + this.lastName);
+// }
+
+// const user = {
+//   firstName: "Василий",
+//   lastName: "Петров",
+// };
+
+// // функция вызовется с this=user
+// showFullName.call(user); // "Василий Петров"
+// const x = 10;
+// const obj1 = {
+//   x: 13,
+//   fun() {
+//     return this.x;
+//   },
+// };
+
+// alert(obj1.fun());
+// const newObj = obj1.fun.bind(obj1);
+// alert(newObj());
+
+//-------------------------------------------------------------
 
 // function makeSizer(size) {
+//   console.log(size);
 //   return function () {
+//     console.log(size);
 //     document.body.style.fontSize = size + "px";
 //   };
 // }
 
-// function makeSizer(size) {
-//   console.log("*");
-//   document.body.style.fontSize = size + "px";
+// const size12 = makeSizer(12);
+// const size14 = makeSizer(14);
+// const size16 = makeSizer(16);
+
+// // console.log("size12", size12);
+
+// document.getElementById("size-12").onclick = size12;
+// document.getElementById("size-14").onclick = size14;
+// document.getElementById("size-16").onclick = size16;
+
+// class Tank {
+//   constructor() {
+//     this.isWeapon = true;
+//     this.isCannon = false;
+//     this.speed = 0;
+
+//     this.decreaseSpeed = function (spd) {
+//       this.speed -= spd;
+//     };
+//   }
+
+//   increaseSpeed(spd) {
+//     this.speed += spd;
+//   }
 // }
 
-function makeSizer(size) {
-  console.log(size);
-  return function () {
-    console.log(size);
-    document.body.style.fontSize = size + "px";
-  };
-}
+// const Abrams = new Tank();
+// Object.defineProperty(Abrams, "cannon", { value: "120mm", writable: true, configurable: true });
+// Abrams.power = 3000;
+// Abrams.cannon = "120mm";
+// //delete Abrams.cannon;
+// Abrams.weight = "55tonn";
+// console.log(Abrams.power);
+// // Object.freeze(Abrams);
+// console.log(Abrams.isCannon);
+// try {
+//   Abrams.power = 5000;
+//   Abrams.weight = "57tonn";
+//   Abrams.speed = "50m/h";
+// } catch (err) {
+//   console.log("you can`t change it - object is frozen.", err);
+// }
+// console.log("Abrams", Abrams);
 
-const size12 = makeSizer(12);
-const size14 = makeSizer(14);
-const size16 = makeSizer(16);
+// let Car = {
+//   type: "cars",
+//   speed: 0,
+//   isOpel: true,
+//   increaseSpeed(spd) {
+//     this.speed += spd;
+//   },
+// };
 
-// console.log("size12", size12);
+// let jeep = Object.create(Car);
+// jeep.type = "hummer";
 
-document.getElementById("size-12").onclick = size12;
-document.getElementById("size-14").onclick = size14;
-document.getElementById("size-16").onclick = size16;
+// // jeep = {
+// //   type: "humer",
+// //     __proto__: Car,
+// // };
 
-// const Car = Object.create(Object);
-// Car.isOpel = true;
-function Car() {
-  this.isOpel = true;
-}
+// console.log("Jeep", jeep.isOpel, jeep.type);
+// console.log("Car", Car.isOpel, Car.type);
 
-class Tank {
-  constructor() {
-    this.isWeapon = true;
-    this.isCannon = false;
-    this.speed = 0;
+// console.log("power", Abrams.power);
+// console.log("weight", Abrams.weight);
 
-    this.decreaseSpeed = function (spd) {
-      this.speed -= spd;
-    };
-  }
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-  increaseSpeed(spd) {
-    this.speed += spd;
-  }
-}
-function jeep() {
-  this.type = "humer";
-}
-// Car.prototype = new Tank();
-// Object.setPrototypeOf(Car, Tank);
-// console.group(new Car());
-// console.group(Car.prototype);
-const Abrams = new Tank();
-Object.defineProperty(Abrams, "cannon", { value: "120mm", writable: true, configurable: true });
-Abrams.power = 3000;
-Abrams.cannon = "120mm";
-//delete Abrams.cannon;
-Abrams.weight = "55tonn";
-console.log(Abrams.power);
-// Object.freeze(Abrams);
-console.log(Abrams.isCannon);
-try {
-  Abrams.power = 5000;
-  Abrams.weight = "57tonn";
-  Abrams.speed = "50m/h";
-} catch (err) {
-  console.log("you can`t change it - object is frozen.", err);
-}
-console.log("Abrams", Abrams);
-console.log("Jeep", jeep);
-console.log("power", Abrams.power);
-console.log("weight", Abrams.weight);
 //=======================18 block5 =========================
 /*  class User {
  //email;  // ??????????????? - НУЖНА - ИНАЧЕ ОШИБКА
